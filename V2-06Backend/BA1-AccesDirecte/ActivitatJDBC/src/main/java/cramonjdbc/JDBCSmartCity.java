@@ -1,6 +1,7 @@
 package cramonjdbc;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -60,13 +61,13 @@ public class JDBCSmartCity {
 			Statement statement = connection.createStatement();
 			ResultSet resultset = statement.executeQuery(select);
 			if (!resultset.next()) {
-			    System.out.println("Aquest sensor no existeix");
-			    return -1;
+				System.out.println("Aquest sensor no existeix");
+				return -1;
 			}
 
-			if (resultset.getBoolean("actiu")==false) {
-			    System.out.println("Aquest sensor esta inactiu");
-			    return -1;
+			if (resultset.getBoolean("actiu") == false) {
+				System.out.println("Aquest sensor esta inactiu");
+				return -1;
 			}
 			if (flag1) {
 				System.out.println("Aquest sensor no existeix");
@@ -89,6 +90,8 @@ public class JDBCSmartCity {
 				preparedstatement.execute();
 
 				// Tancar tots
+				resultset.close();
+				statement.close();
 				preparedstatement.close();
 				return 1;
 			}
@@ -97,6 +100,44 @@ public class JDBCSmartCity {
 
 			e.printStackTrace();
 			return -1;
+		}
+
+	}
+
+	public static void fitxaSensor(int idSensor) {
+		try (Connection connection = DriverManager.getConnection(url, user, password)) {
+			String select = "SELECT s.nom , ts.nom ,z.nom , s.actiu ,count(l.sensor_id), l.data_lectura \r\n"
+					+ "FROM sensors s\r\n" 
+					+ "JOIN tipus_sensors ts ON ts.id =s.tipus_sensor_id \r\n"
+					+ "JOIN zones z ON s.zona_id = z.id\r\n" 
+					+ "JOIN lectures l ON s.id = l.sensor_id\r\n"
+					+ "WHERE s.id = "+idSensor+" AND l.data_lectura =(SELECT l2.data_lectura FROM lectures l2 ORDER BY l2.data_lectura DESC LIMIT 1)\r\n"
+					+ "GROUP BY s.nom ,ts.nom ,z.nom ,s.actiu,l.data_lectura \r\n" 
+					+ ";";
+			
+			/*PreparedStatement prepStatement = connection.prepareStatement(select);
+			
+			prepStatement.setInt(1, idSensor);
+			prepStatement.execute();*/
+			Statement statement = connection.prepareStatement(select);
+			ResultSet resultset = statement.executeQuery(select);
+			
+			
+			while (resultset.next()) {
+				String nom = resultset.getString("s.nom");
+				String tsnom = resultset.getString("ts.nom");
+				String znom = resultset.getString("z.nom");
+				boolean estat = resultset.getBoolean("actiu");
+				int totalLectures = resultset.getInt("count(l.sensor_id)");
+				Date ultimaLectura = resultset.getDate("l.data_lectura");
+				System.out.println("Nom Sensor: " + nom + " Nom de tipus de Sensor: " + tsnom + " Nom de zona:" + znom
+						+ " Estat:" + estat + " Numero de lectures:" + totalLectures + " Ultima lectura:" + ultimaLectura);
+
+			}
+						//prepStatement.close();
+			resultset.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 	}
