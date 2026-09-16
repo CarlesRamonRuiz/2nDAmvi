@@ -10,7 +10,7 @@ static Scanner sc = new Scanner(System.in);
 		JDBCSmartCity.connect();
 		
 		// 2. OPERACIONS CRUD
-		
+		System.out.println("CREAR");
 		JDBCSmartCity.registraLectura(sc.nextLine(), sc.nextInt());
 	}
 
