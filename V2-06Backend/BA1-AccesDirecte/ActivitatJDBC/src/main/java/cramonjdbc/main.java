@@ -1,5 +1,6 @@
 package cramonjdbc;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class main {
@@ -17,7 +18,22 @@ static Scanner sc = new Scanner(System.in);
 		System.out.println("CREAR");
 		//JDBCSmartCity.registraLectura(sc.nextLine(), sc.nextInt());
 		System.out.println("LLEGIR");
-		JDBCSmartCity.fitxaSensor(sc.nextInt());
+		//JDBCSmartCity.fitxaSensor(sc.nextInt());
+		System.out.println("UPDATES");
+		System.out.println("Marques Dubtoses");
+		//JDBCSmartCity.marcaDubtoses(sc.nextInt(), sc.nextDouble(), sc.nextDouble());
+		System.out.println("Desactivar sensors silenciosos");
+		//JDBCSmartCity.desactivaSensorsSilenciosos(LocalDate.of(sc.nextInt(), sc.nextInt(), sc.nextInt()));
+		System.out.println("DELETES");
+		System.out.println("Neteja d'errors");
+		JDBCSmartCity.netejaLecturesError(LocalDate.of(sc.nextInt(), sc.nextInt(), sc.nextInt()));
+		
+		System.out.println("____________________________________");
+		// 2. OPERACIONS CRUD
+		System.out.println("2. Operacions CRUD");
+		System.out.println();
+		System.out.println("____________________________________");
+		System.out.println("____________________________________");
 		System.out.println("____________________________________");
 
 	}

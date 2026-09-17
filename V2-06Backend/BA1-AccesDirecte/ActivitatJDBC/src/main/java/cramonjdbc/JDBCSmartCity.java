@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class JDBCSmartCity {
@@ -62,18 +63,15 @@ public class JDBCSmartCity {
 			ResultSet resultset = statement.executeQuery(select);
 			if (!resultset.next()) {
 				System.out.println("Aquest sensor no existeix");
-				return -1;
+				flag1 = true;
+			} else if (resultset.getBoolean("actiu") == false) {
+				System.out.println("Aquest sensor esta inactiu");
+				flag2 = true;
 			}
 
-			if (resultset.getBoolean("actiu") == false) {
-				System.out.println("Aquest sensor esta inactiu");
-				return -1;
-			}
 			if (flag1) {
-				System.out.println("Aquest sensor no existeix");
 				return -1;
 			} else if (flag2) {
-				System.out.println("Aquest sensor esta inactiu");
 				return -1;
 			} else {
 				// Consulta
@@ -87,13 +85,16 @@ public class JDBCSmartCity {
 				preparedstatement.setDouble(1, valor);
 				preparedstatement.setString(2, nomSensor);
 				// Executem la consulta
-				preparedstatement.execute();
+
+				// Contem les linees que s'han insertat
+				int lineesLlegides = preparedstatement.executeUpdate();
 
 				// Tancar tots
 				resultset.close();
 				statement.close();
 				preparedstatement.close();
-				return 1;
+				System.out.println("Linies llegides: " + lineesLlegides);
+				return lineesLlegides;
 			}
 
 		} catch (SQLException e) {
@@ -106,35 +107,30 @@ public class JDBCSmartCity {
 
 	public static void fitxaSensor(int idSensor) {
 		try (Connection connection = DriverManager.getConnection(url, user, password)) {
-			String select = "SELECT s.nom , ts.nom ,z.nom , s.actiu ,count(l.sensor_id), l.data_lectura \r\n"
-					+ "FROM sensors s\r\n" 
-					+ "JOIN tipus_sensors ts ON ts.id =s.tipus_sensor_id \r\n"
-					+ "JOIN zones z ON s.zona_id = z.id\r\n" 
-					+ "JOIN lectures l ON s.id = l.sensor_id\r\n"
-					+ "WHERE s.id = "+idSensor+" AND l.data_lectura =(SELECT l2.data_lectura FROM lectures l2 ORDER BY l2.data_lectura DESC LIMIT 1)\r\n"
-					+ "GROUP BY s.nom ,ts.nom ,z.nom ,s.actiu,l.data_lectura \r\n" 
-					+ ";";
-			
-			/*PreparedStatement prepStatement = connection.prepareStatement(select);
-			
+			String select = "SELECT s.nom , ts.nom ,z.nom , s.actiu ,count(l.sensor_id) totalLectures, MAX(l.data_lectura) ultimaLectura\n"
+					+ "FROM sensors s\n" + "JOIN tipus_sensors ts ON ts.id =s.tipus_sensor_id \n"
+					+ "JOIN zones z ON s.zona_id = z.id\n" + "JOIN lectures l ON s.id = l.sensor_id\n"
+					+ "WHERE s.id = ?\n" + "GROUP BY s.nom ,ts.nom ,z.nom ,s.actiu;";
+
+			PreparedStatement prepStatement = connection.prepareStatement(select);
+
 			prepStatement.setInt(1, idSensor);
-			prepStatement.execute();*/
-			Statement statement = connection.prepareStatement(select);
-			ResultSet resultset = statement.executeQuery(select);
-			
-			
+
+			ResultSet resultset = prepStatement.executeQuery();
+
 			while (resultset.next()) {
 				String nom = resultset.getString("s.nom");
 				String tsnom = resultset.getString("ts.nom");
 				String znom = resultset.getString("z.nom");
 				boolean estat = resultset.getBoolean("actiu");
-				int totalLectures = resultset.getInt("count(l.sensor_id)");
-				Date ultimaLectura = resultset.getDate("l.data_lectura");
-				System.out.println("Nom Sensor: " + nom + " Nom de tipus de Sensor: " + tsnom + " Nom de zona:" + znom
-						+ " Estat:" + estat + " Numero de lectures:" + totalLectures + " Ultima lectura:" + ultimaLectura);
+				int totalLectures = resultset.getInt("totalLectures");
+				Date ultimaLectura = resultset.getDate("ultimaLectura");
+				System.out.println("Nom Sensor: " + nom + "\n Nom de tipus de Sensor: " + tsnom + " Nom de zona:" + znom
+						+ " Estat:" + estat + " Numero de lectures:" + totalLectures + " Ultima lectura:"
+						+ ultimaLectura);
 
 			}
-						//prepStatement.close();
+			prepStatement.close();
 			resultset.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -142,4 +138,83 @@ public class JDBCSmartCity {
 
 	}
 
+	public static void marcaDubtoses(int idSensor, double min, double max) {
+		try (Connection connection = DriverManager.getConnection(url, user, password)) {
+			String query = "UPDATE lectures l \n" + "JOIN sensors s ON l.sensor_id = s.id \n"
+					+ "SET l.qualitat = 'DUBTOSA'\n"
+					+ "WHERE s.id = ? AND l.valor < ? AND l.valor > ? and l.qualitat NOT LIKE 'DUBTOSA' AND l.qualitat NOT LIKE 'ERROR';";
+
+			PreparedStatement prepStatement = connection.prepareStatement(query);
+
+			prepStatement.setInt(1, idSensor);
+			prepStatement.setDouble(2, min);
+			prepStatement.setDouble(3, max);
+
+			int linies = prepStatement.executeUpdate();
+
+			System.out.println(linies);
+
+			prepStatement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void desactivaSensorsSilenciosos(LocalDate data) {
+		try (Connection connection = DriverManager.getConnection(url, user, password)) {
+
+			String query = "UPDATE sensors s \n" + "JOIN lectures l ON l.sensor_id = s.id \n" + "SET actiu=0\n"
+					+ "WHERE l.data_lectura < ? and l.sensor_id = s.id \n" + ";\n" + "";
+
+			PreparedStatement prepStatement = connection.prepareStatement(query);
+
+			String dataS = data.toString();
+			
+			
+			prepStatement.setString(1, dataS);
+
+			int linies = prepStatement.executeUpdate();
+
+			System.out.println(linies);
+
+			prepStatement.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void netejaLecturesError(LocalDate data) {
+		try(Connection connection = DriverManager.getConnection(url, user, password)) {
+			
+			String query = "DELETE FROM lectures\n"
+					+ "WHERE qualitat = 'ERROR' AND data_lectura < ? ;";
+			
+			PreparedStatement prepStatement = connection.prepareStatement(query);
+			
+			String dataS = data.toString();
+			
+			
+			prepStatement.setString(1, dataS);
+			
+			int linies = prepStatement.executeUpdate();
+
+			System.out.println(linies);
+
+			prepStatement.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void eliminaZonesBuides() {
+		
+	}
+	
+	
+	
 }
+
