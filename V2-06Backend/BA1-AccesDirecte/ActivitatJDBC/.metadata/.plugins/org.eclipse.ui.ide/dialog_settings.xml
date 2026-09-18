@@ -7,6 +7,7 @@
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_SKIP_DOT_FOLDERS" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/home/carles/git/2nDAmvi"/>
 			<item value="/home/carles/Documents/GitHub/2nDAmvi/V2-06Backend/BA1-AccesDirecte/ActivitatJDBC"/>
 			<item value="/home/carles/Documents/GitHub/2nDAmvi"/>
 			<item value="/home/carles/Documents/GitHub/2nDAmvi/V2-06Backend/BA1-AccesDirecte"/>
