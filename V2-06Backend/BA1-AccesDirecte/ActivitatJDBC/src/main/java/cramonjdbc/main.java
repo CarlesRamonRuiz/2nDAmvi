@@ -59,14 +59,14 @@ static Scanner sc = new Scanner(System.in);
 		//JDBCSmartCity.afegirDuplicat();
 		System.out.println("____________________________________");
 		System.out.println("7. PREPARED STATEMENTS");
-		JDBCSmartCity.cercaSensors("E", 1, true);
+		//JDBCSmartCity.cercaSensors("E", 1, true);
 		System.out.println();
-		JDBCSmartCity.cercaSensors("C", 4, false);
+		//JDBCSmartCity.cercaSensors("C", 4, false);
 		System.out.println();
-		JDBCSmartCity.cercaSensors("U", 2, true);
+		//JDBCSmartCity.cercaSensors("U", 2, true);
 		
 		System.out.println("Consulta per rang de dates");
-		JDBCSmartCity.lecturesEntreDates(1, LocalDateTime.of(LocalDate.of(2026,9, 1), LocalTime.of(7, 10)), LocalDateTime.of(LocalDate.of(2026, 10, 9), LocalTime.of(1, 10)));
+		//JDBCSmartCity.lecturesEntreDates(1, LocalDateTime.of(LocalDate.of(2026,9, 1), LocalTime.of(7, 10)), LocalDateTime.of(LocalDate.of(2026, 10, 9), LocalTime.of(1, 10)));
 		System.out.println("____________________________________");
 		System.out.println("8. BATCH PROCESSING");
 		
