@@ -69,7 +69,7 @@ static Scanner sc = new Scanner(System.in);
 		//JDBCSmartCity.lecturesEntreDates(1, LocalDateTime.of(LocalDate.of(2026,9, 1), LocalTime.of(7, 10)), LocalDateTime.of(LocalDate.of(2026, 10, 9), LocalTime.of(1, 10)));
 		System.out.println("____________________________________");
 		System.out.println("8. BATCH PROCESSING");
-		
+		JDBCSmartCity.simulaLectures(1, 30);
 	}
 
 }

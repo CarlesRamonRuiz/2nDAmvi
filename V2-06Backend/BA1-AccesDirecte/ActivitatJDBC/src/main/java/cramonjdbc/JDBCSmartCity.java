@@ -9,6 +9,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 
 
@@ -510,5 +515,98 @@ public class JDBCSmartCity {
 		}
 	}
 	//8
+	public static void simulaLectures(int idZona, int n) {
+		try (Connection connection = DriverManager.getConnection(url, user, password)){
+			//Primer faig un map de cada sensor per poder agafar els limits i els noms
+	        Map<String, double[]> rangs = new HashMap<>();
+	        rangs.put("Temperatura",  new double[]{5, 35});
+	        rangs.put("Humitat",      new double[]{20, 95});
+	        rangs.put("Soroll",       new double[]{35, 90});
+	        rangs.put("CO2",          new double[]{400, 1500});
+	        rangs.put("PM2.5",        new double[]{2, 60});
+	        rangs.put("Trànsit",      new double[]{0, 80});
+	        rangs.put("Lluminositat", new double[]{0, 20000});
+	        rangs.put("Aparcament",   new double[]{0, 50});
+	        rangs.put("Pluviòmetre",  new double[]{0, 15});
+	        rangs.put("Vent",         new double[]{0, 70});
 
+	        Random rnd = new Random();
+			// Obtenim els sensors actius de la zona i el seu tipus
+			String query = "SELECT s.id idSensor, ts.nom nomTipus\r\n"
+					+ "FROM sensors s\r\n"
+					+ "JOIN tipus_sensors ts ON s.tipus_sensor_id = ts.id\r\n"
+					+ "WHERE s.zona_id = ? AND s.actiu = 1;";
+ 
+			PreparedStatement prepStatement = connection.prepareStatement(query);
+			prepStatement.setInt(1, idZona);
+			ResultSet resultSet = prepStatement.executeQuery();
+ 
+			
+			List<Integer> idsSensors = new ArrayList<>();
+			List<String> tipusSensors = new ArrayList<>();
+			while (resultSet.next()) {
+				idsSensors.add(resultSet.getInt("idSensor"));
+				tipusSensors.add(resultSet.getString("nomTipus"));
+			}
+			resultSet.close();
+			prepStatement.close();
+ 
+
+			String queryInsert = "INSERT INTO lectures\r\n"
+					+ "(sensor_id, valor, data_lectura, qualitat)\r\n"
+					+ "VALUES (?, ?, current_timestamp(), ?);";
+ 
+			PreparedStatement prepStatement2 = connection.prepareStatement(queryInsert);
+ 
+			int totalGenerades = 0;
+			int pendents = 0;
+ 
+			for (int i = 0; i < idsSensors.size(); i++) {
+				int idSensor = idsSensors.get(i);
+				String tipus = tipusSensors.get(i);
+				double[] rang = rangs.get(tipus);
+				
+				for (int j = 0; j < n; j++) {
+					double valor = rang[0] + rnd.nextDouble() * (rang[1] - rang[0]);
+					//Aixo d'aqui abaix ho faig perque si no em dona molts decimals
+					valor = Math.round(valor * 100.0) / 100.0;
+ 
+					String qualitat;
+					int p = rnd.nextInt(1*100);
+					if (p < 90) {
+						qualitat = "OK";
+					} else if (p < 98) {
+						qualitat = "DUBTOSA";
+					} else {
+						qualitat = "ERROR";
+					}
+ 
+					prepStatement2.setInt(1, idSensor);
+					prepStatement2.setDouble(2, valor);
+					prepStatement2.setString(3, qualitat);
+					prepStatement2.addBatch();
+ 
+					totalGenerades++;
+					pendents++;
+ 
+					if (pendents == 50) {
+						prepStatement2.executeBatch();
+						pendents = 0;
+					}
+				}
+			}
+ 
+			// Executem el bloc final si queden files pendents (menys de 50)
+			if (pendents > 0) {
+				prepStatement2.executeBatch();
+			}
+ 
+			prepStatement2.close();
+ 
+			System.out.println("Lectures generades i inserides: " + totalGenerades);
+ 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
