@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     TextView operacio;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
         EdgeToEdge.enable(this);
@@ -383,10 +383,6 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
-
-    // ========================================
-    // OBTENER EL VALOR ACTUAL PARA LA MEMORIA
-    // ========================================
 
     private Double obtenirValorActual() {
 
