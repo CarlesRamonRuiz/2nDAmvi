@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Linear"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/txtNombre"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/hint_nombre"
+        android:inputType="text"
+        android:lines="1" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/hint_email"
+        android:inputType="textEmailAddress"
+        android:lines="1" />
+
+    <Spinner
+        android:id="@+id/spiForma"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/arrayFormes"
+        android:prompt="@string/titulo_spinner" />
+
+    <EditText
+        android:id="@+id/txtMensaje"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|left"
+        android:layout_marginLeft="20dp"
+        android:ems="10"
+        android:hint="@string/hint_mensaje"
+        android:inputType="textMultiLine"
+        android:minLines="4" />
+
+    <CheckBox
+        android:id="@+id/cbUsarMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="true"
+        android:text="@string/texte_usar_mail" />
+
+    <Button
+        android:id="@+id/cmdEnviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/texte_boto_enviar"  />
+
+    <Spinner
+        android:id="@+id/spiProva"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"           
+         />
+
+</LinearLayout>

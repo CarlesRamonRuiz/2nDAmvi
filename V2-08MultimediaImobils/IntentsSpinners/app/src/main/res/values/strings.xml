@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="app_name">UF1-1-A13_Spinner_Intents_2</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Spinner and Intents 2</string>
+    <string name="hint_nombre">Escriu nom</string>
+    <string name="hint_email">Escriu email</string>
+    <string name="hint_mensaje">Missatge</string>
+    <string name="titulo_spinner">Forma de enviament</string>
+    <string name="texte_usar_mail">Fer servir mail</string>
+    <string name="texte_boto_enviar">Enviar mail</string>
+
+</resources>
