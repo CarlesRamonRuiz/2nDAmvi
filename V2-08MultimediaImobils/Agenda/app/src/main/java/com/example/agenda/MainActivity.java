@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       /* ********************* 
+
         // Conectem al ListView com el Spinner per  sortir  molt simple,.
         
         ArrayAdapter<String> adaptador = new  ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, datos);
@@ -49,17 +49,16 @@ public void onCreate(Bundle savedInstanceState) {
 			}
 		});
         
-        
-        *********************/
+
         
         // Anem a fer-ho amb una vista personalitzada (Fem la clase AdaptadorTitulares propia)
         // que construir  la vista personalitzada a partir de la classe Titular i el Layout listitem_titular.
         
-        AdaptadorTitulares adaptador = new AdaptadorTitulares(this);
+        AdaptadorTitulares adaptadorTitulares = new AdaptadorTitulares(this);
         
         ListView lstOpciones = (ListView) findViewById(R.id.lstOpcions);
         
-        lstOpciones.setAdapter(adaptador);
+        lstOpciones.setAdapter(adaptadorTitulares);
     
         lstOpciones.setOnItemClickListener(new OnItemClickListener() {
 
