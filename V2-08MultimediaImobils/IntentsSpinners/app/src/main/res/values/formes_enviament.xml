@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="arrayFormes">
+        <item >Urgent</item>
+        <item >Consulta</item>
+        <item >Informació</item>
+        <item >Sugerència</item>
+    </string-array>
+    
+</resources>
