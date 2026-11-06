@@ -1,0 +1,8 @@
+body{
+    background-color: lime;
+    display: flex;
+}
+#root{
+    flex-direction: column;
+    align-content: center;
+}

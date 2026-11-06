@@ -1,0 +1,11 @@
+.capsa{
+    width: 300px;
+    height: 200px;
+    background-Color: grey;
+    border: 2px dashed lime;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+    cursor: pointer
+}
