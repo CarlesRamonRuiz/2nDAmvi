@@ -15,12 +15,9 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-	String[] datos= new String[] {"Element 1","Element 2","Element 3","Element 4","Element 5","Element 5","Element 7","Element 8"};
-	final Titular[] datosE= new Titular[] {new Titular("Titulo 1","Substitulo 1"),
-									 new Titular("Titulo 2","Substitulo 2"),
-									 new Titular("Titulo 3","Substitulo 3"),
-									 new Titular("Titulo 4","Substitulo 4"),
-									 new Titular("Titulo 5","Substitulo 5")};
+		final Contacte[] AgendaContactes = new Contacte[] {
+				new Contacte("Carles","Ramon Ruiz","Carrer Copenhagen, n7, 1-1", "+34 676 76 67 76", "carlesramonruiz@gmail.com", "12-10-2007")
+		};
     @Override
     
 public void onCreate(Bundle savedInstanceState) {
@@ -29,8 +26,7 @@ public void onCreate(Bundle savedInstanceState) {
 
         // Conectem al ListView com el Spinner per  sortir  molt simple,.
         
-        ArrayAdapter<String> adaptador = new  ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, datos);
-        
+        ArrayAdapter<String> adaptador = new  ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1);
         ListView lstOpcions = (ListView) findViewById(R.id.lstOpcions);
         
         lstOpcions.setAdapter(adaptador);
@@ -66,7 +62,7 @@ public void onCreate(Bundle savedInstanceState) {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				Toast.makeText(getApplicationContext(), datosE[arg2].getTitulo(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), AgendaContactes[arg2].getNom(), Toast.LENGTH_SHORT).show();
 			}
 		});
          
@@ -79,7 +75,7 @@ public void onCreate(Bundle savedInstanceState) {
  
 		Activity context;
 		public AdaptadorTitulares(Activity context) {
-			super(context, R.layout.listitem_titular, datosE);
+			super(context, R.layout.listitem_titular, AgendaContactes);
 			this.context = (Activity) context;			
 		}
     	
@@ -99,10 +95,10 @@ public void onCreate(Bundle savedInstanceState) {
     		// OJOOOO!!!!! hemos de hacer el findViewById del item que tenemos inflado.
     		TextView lblTitulo = (TextView) item.findViewById(R.id.lblTitulo);
     		
-    		lblTitulo.setText(datosE[position].getTitulo().toString());    	
+    		lblTitulo.setText(AgendaContactes[position].getNom().toString());
     		TextView lblSubTitulo = (TextView) item.findViewById(R.id.lblSubtitulo);
     		// Log.i("Niko","3->"+datosE[position].getSubtitulo().toString() );
-    		lblSubTitulo.setText(datosE[position].getSubtitulo().toString());
+    		lblSubTitulo.setText(AgendaContactes[position].getNom().toString());
     		// Log.i("Niko","4");
     		return (item);    		
     	}
