@@ -95,10 +95,10 @@ public void onCreate(Bundle savedInstanceState) {
     		// OJOOOO!!!!! hemos de hacer el findViewById del item que tenemos inflado.
     		TextView lblTitulo = (TextView) item.findViewById(R.id.lblTitulo);
     		
-    		lblTitulo.setText(AgendaContactes[position].getNom().toString());
+    		lblTitulo.setText(AgendaContactes[position].getNom().toString()+AgendaContactes[position].getCognom().toString());
     		TextView lblSubTitulo = (TextView) item.findViewById(R.id.lblSubtitulo);
     		// Log.i("Niko","3->"+datosE[position].getSubtitulo().toString() );
-    		lblSubTitulo.setText(AgendaContactes[position].getNom().toString());
+    		lblSubTitulo.setText(AgendaContactes[position].getTelefon().toString());
     		// Log.i("Niko","4");
     		return (item);    		
     	}
