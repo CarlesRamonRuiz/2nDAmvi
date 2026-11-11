@@ -16,7 +16,8 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 
 		final Contacte[] AgendaContactes = new Contacte[] {
-				new Contacte("Carles","Ramon Ruiz","Carrer Copenhagen, n7, 1-1", "+34 676 76 67 76", "carlesramonruiz@gmail.com", "12-10-2007")
+				new Contacte("Carles","Ramon Ruiz","Carrer Copenhagen, n7, 1-1", "+34 676 76 67 76", "carlesramonruiz@gmail.com", "12-10-2007"),
+				new Contacte("Christian","Mellado Martin","Avinguda Copenhagen, n7, 4-3", "+34 692 30 44 31", "chmelladomarti@gmail.com", "12-10-2004")
 		};
     @Override
     
@@ -61,8 +62,8 @@ public void onCreate(Bundle savedInstanceState) {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				// TODO Auto-generated method stub
-				Toast.makeText(getApplicationContext(), AgendaContactes[arg2].getNom(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), AgendaContactes[arg2].getNom()+" "+AgendaContactes[arg2].getCognom(), Toast.LENGTH_SHORT).show();
+
 			}
 		});
          
@@ -95,10 +96,10 @@ public void onCreate(Bundle savedInstanceState) {
     		// OJOOOO!!!!! hemos de hacer el findViewById del item que tenemos inflado.
     		TextView lblTitulo = (TextView) item.findViewById(R.id.lblTitulo);
     		
-    		lblTitulo.setText(AgendaContactes[position].getNom().toString()+AgendaContactes[position].getCognom().toString());
+    		lblTitulo.setText(AgendaContactes[position].getNom()+" "+AgendaContactes[position].getCognom());
     		TextView lblSubTitulo = (TextView) item.findViewById(R.id.lblSubtitulo);
     		// Log.i("Niko","3->"+datosE[position].getSubtitulo().toString() );
-    		lblSubTitulo.setText(AgendaContactes[position].getTelefon().toString());
+    		lblSubTitulo.setText(AgendaContactes[position].getTelefon());
     		// Log.i("Niko","4");
     		return (item);    		
     	}
