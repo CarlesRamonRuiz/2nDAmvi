@@ -5,7 +5,11 @@
 //EX 5
 //import Perfil from "./components/Ex5/ex5.tsx";
 //EX 9
-import Llista from "./components/Ex9/ex9.tsx";
+//import Llista from "./components/Ex9/ex9.tsx";
+//EX 10
+//import Llista from "./components/Ex10/ex10.tsx";
+//EX 11
+import Llista from "./components/Ex11/ex11.tsx";
 import './App.css'
 
 
@@ -13,7 +17,6 @@ function App() {
 
   return (
       <>
-
     <Llista></Llista>
       </>
   )
