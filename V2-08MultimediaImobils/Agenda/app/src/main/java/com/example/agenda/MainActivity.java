@@ -76,7 +76,7 @@ public void onCreate(Bundle savedInstanceState) {
  
 		Activity context;
 		public AdaptadorTitulares(Activity context) {
-			super(context, R.layout.listitem_titular, AgendaContactes);
+			super(context, R.layout.contacte_modificar, AgendaContactes);
 			this.context = (Activity) context;			
 		}
     	
@@ -92,7 +92,7 @@ public void onCreate(Bundle savedInstanceState) {
     		// Inflem el Lauoyt    		    		    				
     		LayoutInflater inflater = context.getLayoutInflater();
     		// Sobre el layout crear (inflat) dupliquem el layour creat amb els objectes, view personals.
-    		View item = inflater.inflate(R.layout.listitem_titular, null);
+    		View item = inflater.inflate(R.layout.contacte_modificar, null);
     		// OJOOOO!!!!! hemos de hacer el findViewById del item que tenemos inflado.
     		TextView lblTitulo = (TextView) item.findViewById(R.id.lblTitulo);
     		
