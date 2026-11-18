@@ -8,13 +8,27 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contactes"
+        android:text="@string/titolMain"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <ListView
-        android:id="@+id/lstOpcions"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/lstOpcions"
+            android:layout_width="fill_parent"
+            android:layout_height="651dp">
+
+        </ListView>
+
+        <Button
+            android:id="@+id/_btnAfegirContacte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/afegirContacteMain" />
+
+    </LinearLayout>
 
 </LinearLayout>

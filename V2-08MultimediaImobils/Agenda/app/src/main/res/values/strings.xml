@@ -5,5 +5,16 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">UF1-1-A15 ListView</string>
     <string name="txt_temporal">Text de proves</string>
+    <string name="titolMain">Contactes</string>
+    <string name="afegirContacteMain">Afegir Contacte</string>
+
+    <string name="titolCrear">Replena les dades del nou contacte</string>
+    <string name="nomCrear">Posa aqui el nom del contacte</string>
+    <string name="cognomCrear">Posa aqui el cognom del contacte</string>
+    <string name="emailCrear">Posa aqui el correu del contacte</string>
+    <string name="telefonCrear">Posa aqui el Telefon del contacte</string>
+    <string name="btnCrear">Crear Contacte</string>
+    <string name="btnCancelar">Cancelar</string>
+
 
 </resources>
