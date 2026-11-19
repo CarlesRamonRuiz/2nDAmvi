@@ -3,14 +3,10 @@ import {type JSX, useState} from "react";
 import "./ex11.css"
 
 function Llista(){
-    const llistaProductes:string[] = ['Cereals','Pasta'];
     const [showMore, setShowMore] = useState(false);
     function handleMoreClick() {
         setShowMore(!showMore);
     }
-    const mapaProductes = llistaProductes.map((nom,preu)=>{
-        return <div key={nom}>{preu + 1} - {nom}</div>
-    })
     // Funció que transforma la llista de noms de l'objecte ts a un conjunt d'elements amb format jsx.Element.
     function carregarLlistaProductes():JSX.Element[]{
         // Creem una array de JSX.Element. Cal importar com s'indica a dalt
