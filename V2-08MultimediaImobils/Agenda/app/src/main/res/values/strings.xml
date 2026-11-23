@@ -16,6 +16,4 @@
     <string name="trucar">Llamar</string>
     <string name="enviarEmail">Enviar correo</string>
     <string name="campObligatori">Rellena este campo</string>
-    <string name="senseAplicacio">No hay ninguna aplicación para esta acción</string>
-    <string name="llistaBuida">No hay contactos</string>
 </resources>
