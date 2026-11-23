@@ -21,7 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Item">
+
+        <activity
+            android:name=".Item"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize">
 
         </activity>
     </application>

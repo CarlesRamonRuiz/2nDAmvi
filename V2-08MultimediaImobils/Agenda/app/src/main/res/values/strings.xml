@@ -1,20 +1,21 @@
 <resources>
-
-    <string name="app_name">UF1-1-A15-ListView</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">UF1-1-A15 ListView</string>
-    <string name="txt_temporal">Text de proves</string>
-    <string name="titolMain">Contactes</string>
-    <string name="afegirContacteMain">Afegir Contacte</string>
-
-    <string name="titolCrear">Replena les dades del nou contacte</string>
-    <string name="nomCrear">Posa aqui el nom del contacte</string>
-    <string name="cognomCrear">Posa aqui el cognom del contacte</string>
-    <string name="emailCrear">Posa aqui el correu del contacte</string>
-    <string name="telefonCrear">Posa aqui el Telefon del contacte</string>
-    <string name="btnCrear">Crear Contacte</string>
+    <string name="app_name">Agenda</string>
+    <string name="titolMain">Contactos</string>
+    <string name="afegirContacteMain">Añadir contacto</string>
+    <string name="titolCrear">Nuevo contacto</string>
+    <string name="titolEditar">Consultar / modificar contacto</string>
+    <string name="nomCrear">Nombre</string>
+    <string name="cognomCrear">Apellidos</string>
+    <string name="adrecaCrear">Dirección</string>
+    <string name="telefonCrear">Teléfono</string>
+    <string name="emailCrear">Correo electrónico</string>
+    <string name="dataCrear">Fecha de nacimiento (dd-mm-aaaa)</string>
+    <string name="acceptar">Aceptar</string>
     <string name="btnCancelar">Cancelar</string>
-
-
+    <string name="esborrar">Eliminar contacto</string>
+    <string name="trucar">Llamar</string>
+    <string name="enviarEmail">Enviar correo</string>
+    <string name="campObligatori">Rellena este campo</string>
+    <string name="senseAplicacio">No hay ninguna aplicación para esta acción</string>
+    <string name="llistaBuida">No hay contactos</string>
 </resources>
