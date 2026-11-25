@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/formulari"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtCrearContacte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/titolCrear"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/txtNom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:hint="@string/nomCrear"
+            android:inputType="textPersonName|textCapWords" />
+
+        <EditText
+            android:id="@+id/txtCognom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:hint="@string/cognomCrear"
+            android:inputType="textPersonName|textCapWords" />
+
+        <EditText
+            android:id="@+id/txtAdreca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:hint="@string/adrecaCrear"
+            android:inputType="textPostalAddress" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/editTextPhone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:hint="@string/telefonCrear"
+                android:inputType="phone" />
+
+            <ImageButton
+                android:id="@+id/btnTrucar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/trucar"
+                android:src="@android:drawable/ic_menu_call" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/txtEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:hint="@string/emailCrear"
+                android:inputType="textEmailAddress" />
+
+            <ImageButton
+                android:id="@+id/btnEmail"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/enviarEmail"
+                android:src="@android:drawable/ic_dialog_email" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/txtDataNaixement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:hint="@string/dataCrear"
+            android:inputType="date" />
+
+        <Button
+            android:id="@+id/btnCrear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/acceptar" />
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btnCancelar" />
+
+        <Button
+            android:id="@+id/btnEsborrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/esborrar" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Agenda</string>
+    <string name="titolMain">Contactos</string>
+    <string name="afegirContacteMain">Añadir contacto</string>
+    <string name="titolCrear">Nuevo contacto</string>
+    <string name="titolEditar">Consultar / modificar contacto</string>
+    <string name="nomCrear">Nombre</string>
+    <string name="cognomCrear">Apellidos</string>
+    <string name="adrecaCrear">Dirección</string>
+    <string name="telefonCrear">Teléfono</string>
+    <string name="emailCrear">Correo electrónico</string>
+    <string name="dataCrear">Fecha de nacimiento (dd-mm-aaaa)</string>
+    <string name="acceptar">Aceptar</string>
+    <string name="btnCancelar">Cancelar</string>
+    <string name="esborrar">Eliminar contacto</string>
+    <string name="trucar">Llamar</string>
+    <string name="enviarEmail">Enviar correo</string>
+    <string name="campObligatori">Rellena este campo</string>
+</resources>
