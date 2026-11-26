@@ -11,9 +11,11 @@
 //EX 11
 //import Llista from "./components/Ex11/ex11.tsx";
 //EX 12
-import RandomNumber from "./components/Ex12/ex12.tsx";
+//import RandomNumber from "./components/Ex12/ex12.tsx";
 //EX 13
 //import Checkbox from "./components/Ex13/ex13.tsx";
+//EX 14
+import Theme from "./components/Ex14/ex14.tsx";
 import './App.css'
 
 
@@ -21,7 +23,7 @@ function App() {
 
   return (
       <>
-      <RandomNumber></RandomNumber>
+      <Theme></Theme>
       </>
   )
 }
