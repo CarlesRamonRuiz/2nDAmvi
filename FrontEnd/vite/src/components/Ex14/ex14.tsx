@@ -8,10 +8,7 @@ function Theme(){
     }
     return(
         <>
-            <ThemeContext.Provider value={"light"}>
-            <h2>Variable d'entorn {theme}</h2>
-            <button onClick={handleMoreClick}>Canviar a {showMore ? 'light' : 'dark'}
-            </button>
+            <ThemeContext.Provider value={"context"}>
             </ThemeContext.Provider>
         </>
     )
